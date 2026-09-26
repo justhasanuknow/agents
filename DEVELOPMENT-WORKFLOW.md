@@ -1,4 +1,4 @@
-# DEVELOPMENT-WORKFLOW.md — Autonomous One-Shot Project Development
+# DEVELOPMENT-WORKFLOW.md: Autonomous One-Shot Project Development
 
 This workflow builds a complete new application from a requirements document in one uninterrupted run. The agent analyzes the requirements, splits the work into phases, gates every phase with tests that include all earlier phases' tests, commits and pushes each finished phase to a private repository it creates, and finishes with a maintainer guide. It does not stop for approval between steps.
 
@@ -89,7 +89,7 @@ Anything not listed in this table remains forbidden.
 
 ## Workflow
 
-### Step 0 — Preflight
+### Step 0: Preflight
 
 Before writing anything:
 
@@ -101,7 +101,7 @@ Before writing anything:
 
 If any preflight check fails, stop and tell the user exactly what is missing. Preflight and a blocked gate are the only two points where a run stops.
 
-### Step 1 — Analysis
+### Step 1: Analysis
 
 Write `docs/ANALYSIS.md`:
 
@@ -111,7 +111,7 @@ Write `docs/ANALYSIS.md`:
 - Every gap, ambiguity and contradiction, each resolved through the Decision Policy.
 - A size and complexity assessment (modules, integrations, data model, risk areas) that concludes with the number of phases and why.
 
-### Step 2 — Plan
+### Step 2: Plan
 
 Write `docs/PLAN.md`. It is not submitted for approval; the run continues immediately.
 
@@ -123,7 +123,7 @@ Write `docs/PLAN.md`. It is not submitted for approval; the run continues immedi
 - Test plans are comprehensive: happy paths, validation and error paths, authorization boundaries, and every edge case PROJECT.md names. If the project has a UI, every user-facing flow has an end-to-end test.
 - The plan ends with a traceability table: requirement ID, phase, tests. Every requirement maps to at least one phase and at least one test.
 
-### Step 3 — Phase Loop
+### Step 3: Phase Loop
 
 For each phase, in order:
 
@@ -165,7 +165,7 @@ A test that passes only on retry is a failing test. Fix the cause of the flakine
   4. Deliver the final report.
 - Never start the next phase while the gate is red.
 
-### Step 4 — Delivery
+### Step 4: Delivery
 
 After the last phase is `done`:
 

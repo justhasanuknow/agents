@@ -2,7 +2,7 @@
 
 A curated collection of instruction documents for AI agents (Claude Code, Cursor, GitHub Copilot, etc.) covering recurring engineering and creative tasks.
 
-Each instruction file is a self-contained document that an agent can follow to complete a specific task class — from building a static website, to reviewing a pull request, to refactoring legacy code, to producing design briefs.
+Each instruction file is a self-contained document that an agent can follow to complete a specific task class: from building a static website, to reviewing a pull request, to refactoring legacy code, to producing design briefs.
 
 > **For AI agents:** start at [AGENTS.md](AGENTS.md). It is the entry point that tells you which files to always read and which files apply to your task type. This README is written for humans.
 
@@ -10,10 +10,10 @@ Each instruction file is a self-contained document that an agent can follow to c
 
 Each instruction file in this repo is designed to be:
 
-1. **Standalone** — pasted or attached to an agent without external dependencies
-2. **Interactive when needed** — the agent collects required information from the user via interview before acting
-3. **Reference-anchored** — points to a live reference (URL, repo, file) for grounding rather than describing everything inline
-4. **Reproducible** — produces consistent, high-quality output across runs and across agents
+1. **Standalone**: pasted or attached to an agent without external dependencies
+2. **Interactive when needed**: the agent collects required information from the user via interview before acting
+3. **Reference-anchored**: points to a live reference (URL, repo, file) for grounding rather than describing everything inline
+4. **Reproducible**: produces consistent, high-quality output across runs and across agents
 
 ## Quickstart
 
@@ -27,7 +27,8 @@ Each instruction file in this repo is designed to be:
 | Instruction | Category | Use Case | Status |
 | --- | --- | --- | --- |
 | [PLAIN-STATIC-SITE-TEMPLATE.md](tech-based-rules/PLAIN-STATIC-SITE-TEMPLATE.md) | Web Development | Build a modern professional-service static website with dark/light mode, SEO, form, and bot protection | Stable |
-| [ANGULAR.md](tech-based-rules/ANGULAR.md) | Web Development | Framework-level conventions for AI agents working in modern Angular codebases (standalone, signals, i18n, theming) | Stable |
+| [ANGULAR.md](tech-based-rules/ANGULAR.md) | Web Development | Framework-level conventions for AI agents working in modern Angular codebases (standalone components, observables with explicit change detection, i18n, theming) | Stable |
+| [SVELTEKIT.md](tech-based-rules/SVELTEKIT.md) | Web Development | Framework-level conventions for AI agents working in SvelteKit codebases (Svelte 5 runes, Drizzle ORM, SCSS theming, Paraglide i18n, testing) | Draft |
 | [GIT-RULES.md](GIT-RULES.md) | Workflow Safety | Define which git and GitHub CLI operations an AI agent may perform, which are user-only, and how conflict resolution and user waivers are scoped | Stable |
 | [GENERAL-RULES.md](GENERAL-RULES.md) | Workflow Safety | Baseline agent rules for every task: conduct, formatting, command/database restrictions, and per-technology conventions | Stable |
 | [DEVELOPMENT-WORKFLOW.md](DEVELOPMENT-WORKFLOW.md) | Workflow | Build a complete new application from a `PROJECT.md` in one autonomous run: analysis, phased plan with test gates, full regression at every phase, private repository, maintainer guide | Draft |
@@ -38,22 +39,22 @@ Planned categories: code review, refactor, design brief, content writing, data a
 
 A well-formed instruction file in this repo typically contains:
 
-- **Overview** — what the instruction is for, in one paragraph
-- **How to Use** — concrete steps for the user + the prompt to give the agent
-- **Reference** — URL or file the agent should study before acting
-- **Interview Protocol** — questions to ask the user, in order, with validation rules
-- **Task List** — sequential steps the agent executes
-- **Requirements** — non-negotiable rules (e.g., SEO, accessibility, security)
-- **Protected Patterns** — tested behaviors that must not be modified
-- **Conventions** — naming, structure, style guidelines
-- **Validation Checklist** — items to verify before reporting success
-- **FAQ** — known edge cases and resolutions
+- **Overview**: what the instruction is for, in one paragraph
+- **How to Use**: concrete steps for the user + the prompt to give the agent
+- **Reference**: URL or file the agent should study before acting
+- **Interview Protocol**: questions to ask the user, in order, with validation rules
+- **Task List**: sequential steps the agent executes
+- **Requirements**: non-negotiable rules (e.g., SEO, accessibility, security)
+- **Protected Patterns**: tested behaviors that must not be modified
+- **Conventions**: naming, structure, style guidelines
+- **Validation Checklist**: items to verify before reporting success
+- **FAQ**: known edge cases and resolutions
 
 Not every instruction needs every section, but this is the standard skeleton.
 
 ## Philosophy
 
-- **Instructions describe, don't dictate.** Each file tells the agent what to produce and which patterns to follow, then points to a reference for implementation details. Agents inspect the reference, internalize patterns, and adapt to the specific task.
+- **Explicit rules, referenced implementation.** Each file states its rules explicitly and testably, and points to a reference for implementation details instead of spelling out every line. Agents inspect the reference, internalize its patterns, and adapt them to the task.
 - **Interactive interview over forms.** When inputs are needed, the agent asks the user one question at a time, validates each answer, and confirms critical inputs before proceeding.
 - **Tested patterns are protected.** The "Protected Patterns" section in each instruction is the accumulated result of real production fixes. Agents must not deviate.
 - **No vendor lock-in.** Instructions are model-agnostic. They should work with any capable agent (Claude, GPT, Gemini, etc.). Test before committing to a specific agent.
@@ -62,6 +63,8 @@ Not every instruction needs every section, but this is the standard skeleton.
 
 ```text
 /
+├── .gitattributes                      # line endings: LF everywhere
+├── .markdownlint.jsonc                 # markdown lint configuration
 ├── README.md                           # this file (for humans)
 ├── AGENTS.md                           # entry point for AI agents (read first)
 ├── GENERAL-RULES.md                    # baseline rules for every agent task
@@ -69,11 +72,12 @@ Not every instruction needs every section, but this is the standard skeleton.
 ├── DEVELOPMENT-WORKFLOW.md             # workflow: autonomous one-shot project development
 ├── tech-based-rules/                   # technology-specific instruction files
 │   ├── ANGULAR.md                      # web: Angular codebase conventions
-│   └── PLAIN-STATIC-SITE-TEMPLATE.md   # web: professional-service static site
+│   ├── PLAIN-STATIC-SITE-TEMPLATE.md   # web: professional-service static site
+│   └── SVELTEKIT.md                    # web: SvelteKit codebase conventions
 └── (future instructions)
 ```
 
-Each file is self-contained — no shared imports. You can use any instruction independently.
+Each file is self-contained: no shared imports. You can use any instruction independently.
 
 ## Contributing a New Instruction
 

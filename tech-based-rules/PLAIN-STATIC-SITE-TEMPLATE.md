@@ -1,4 +1,4 @@
-# Modern Static Professional Service Website — Build Instructions
+# Modern Static Professional Service Website: Build Instructions
 
 This document provides detailed build instructions for an AI agent (Claude Code, Cursor, etc.) to produce a modern, SEO-compliant, dark/light mode capable static website for a professional service firm (law, consulting, engineering, accounting, architecture, healthcare, etc.).
 
@@ -16,24 +16,24 @@ This document provides detailed build instructions for an AI agent (Claude Code,
 >
 > Workflow:
 >
-> **Phase 1 — Reference inspection**: WebFetch the REFERENCE SITE (<https://karabogahukuk.com>) and study its architecture, file structure, CSS design system, JS modules, HTML patterns, and visual language. Also inspect inner pages (about, practice areas, team, contact). Do this silently — do not describe findings to the user unless they ask.
+> **Phase 1 (Reference inspection)**: WebFetch the REFERENCE SITE (<https://karabogahukuk.com>) and study its architecture, file structure, CSS design system, JS modules, HTML patterns, and visual language. Also inspect inner pages (about, practice areas, team, contact). Do this silently. Do not describe findings to the user unless they ask.
 >
-> **Phase 2 — Interactive interview**: Using the INTERVIEW PROTOCOL section as your script, ask the user the questions one at a time, in the order presented. For each question:
+> **Phase 2 (Interactive interview)**: Using the INTERVIEW PROTOCOL section as your script, ask the user the questions one at a time, in the order presented. For each question:
 >
 > - Show a clear, concise question
-> - Include 1–2 examples of acceptable answers
+> - Include 1-2 examples of acceptable answers
 > - Mark optional fields explicitly ("optional, press Enter to skip")
 > - Validate responses (color contrast, URL format, email format) and ask again if invalid
 > - For table-style inputs (services, team members), ask how many items the user wants, then ask each item's fields one at a time
-> - Confirm critical inputs by repeating them back ("So your firm name is 'X' — correct?")
+> - Confirm critical inputs by repeating them back ("So your firm name is 'X', correct?")
 >
 > Do not proceed to build until all required information is collected. If user wants to skip an optional section, accept and move on. Save all collected answers to a local file `_client-info.md` (in the project root) so progress is preserved if interrupted.
 >
-> **Phase 3 — Build**: Apply the TASK LIST sequentially. Strictly follow PROTECTED PATTERNS — those are tested, working systems; do not deviate. Apply every item in SEO REQUIREMENTS. Commit logically at the end of each major step.
+> **Phase 3 (Build)**: Apply the TASK LIST sequentially. Strictly follow PROTECTED PATTERNS. Those are tested, working systems; do not deviate. Apply every item in SEO REQUIREMENTS. Commit logically at the end of each major step.
 >
-> **Phase 4 — Validation**: Execute every item in the VALIDATION CHECKLIST. Report any items that cannot be auto-verified (visual things, third-party setup) and prompt the user to confirm them manually.
+> **Phase 4 (Validation)**: Execute every item in the VALIDATION CHECKLIST. Report any items that cannot be auto-verified (visual things, third-party setup) and prompt the user to confirm them manually.
 >
-> **Phase 5 — Cleanup**: Delete `_client-info.md` and this BUILD-TEMPLATE document from the project folder before final deploy.
+> **Phase 5 (Cleanup)**: Delete `_client-info.md` and this BUILD-TEMPLATE document from the project folder before final deploy.
 
 ---
 
@@ -43,19 +43,19 @@ URL: <https://karabogahukuk.com>
 
 This is a live example built with the same architecture. The agent must inspect:
 
-- `/` — Homepage (hero + practice areas + about preview + contact info)
-- `/pages/hakkimizda.html` — Vision/mission/values layout
-- `/pages/faaliyet-alanlari.html` — Service card structure
-- `/pages/ekibimiz.html` — Team cards
-- `/pages/iletisim.html` — Form, FAQ, map
-- `/en/` and its sub-pages — English mirror
+- `/`: Homepage (hero + practice areas + about preview + contact info)
+- `/pages/hakkimizda.html`: Vision/mission/values layout
+- `/pages/faaliyet-alanlari.html`: Service card structure
+- `/pages/ekibimiz.html`: Team cards
+- `/pages/iletisim.html`: Form, FAQ, map
+- `/en/` and its sub-pages: English mirror
 
 Files to fetch and study:
 
-- `css/style.css` — Design system + all component styles
-- `js/theme.js` — Dark/light mode logic
-- `js/contact-form.js` — Web3Forms integration
-- `js/main.js` — Mobile menu, scroll effects
+- `css/style.css`: Design system + all component styles
+- `js/theme.js`: Dark/light mode logic
+- `js/contact-form.js`: Web3Forms integration
+- `js/main.js`: Mobile menu, scroll effects
 
 ---
 
@@ -65,7 +65,7 @@ This section is the agent's interview script. Ask the user each item in the orde
 
 Start the interview with the section "Language Preference" because it determines whether subsequent questions need primary + secondary inputs.
 
-### Language Preference [REQUIRED — ask first]
+### Language Preference [REQUIRED, ask first]
 
 - Ask: "Will the site be single-language or bilingual?"
 - If bilingual, ask: "What is the primary language? And the secondary?"
@@ -76,61 +76,61 @@ Start the interview with the section "Language Preference" because it determines
 
 - **Firm name** (primary language) [REQUIRED]
 - **Firm name** (secondary language) [REQUIRED if bilingual]
-- **Industry** [REQUIRED] — examples: law, consulting, engineering, accounting, architecture, healthcare. This determines schema.org type (LegalService, ProfessionalService, AccountingService, MedicalBusiness, etc.) and section naming ("Practice Areas" vs. "Services").
-- **Tagline** (primary) [OPTIONAL] — short slogan for hero/footer
+- **Industry** [REQUIRED]. Examples: law, consulting, engineering, accounting, architecture, healthcare. This determines schema.org type (LegalService, ProfessionalService, AccountingService, MedicalBusiness, etc.) and section naming ("Practice Areas" vs. "Services").
+- **Tagline** (primary) [OPTIONAL]: short slogan for hero/footer
 - **Tagline** (secondary) [OPTIONAL, if bilingual]
-- **Founding year** [REQUIRED] — used in schema.org and copyright
-- **Address** [REQUIRED] — street, district, city, postal code
-- **Geo coordinates** [REQUIRED] — latitude, longitude (from Google Maps; right-click on location → coordinates). Validate format: two numbers between -90/90 and -180/180.
-- **Domain** [REQUIRED] — used in canonical URLs and schema.org. Validate format: bare domain like `example.com` (no protocol).
-- **Logo file path** [OPTIONAL] — if "none", a text-based logo using the firm name is generated
-- **Hero background image** [OPTIONAL] — if "none", agent picks a tasteful generic image (or solid gradient)
+- **Founding year** [REQUIRED]: used in schema.org and copyright
+- **Address** [REQUIRED]: street, district, city, postal code
+- **Geo coordinates** [REQUIRED]: latitude, longitude (from Google Maps; right-click on location → coordinates). Validate format: two numbers between -90/90 and -180/180.
+- **Domain** [REQUIRED]: used in canonical URLs and schema.org. Validate format: bare domain like `example.com` (no protocol).
+- **Logo file path** [OPTIONAL]: if "none", a text-based logo using the firm name is generated
+- **Hero background image** [OPTIONAL]: if "none", agent picks a tasteful generic image (or solid gradient)
 
 ### Services / Practice Areas [REQUIRED]
 
-- First ask: "How many services do you want to list? (1–8, recommended 6–8). The 4 most important appear on the homepage; all appear in detail on the inner page."
+- First ask: "How many services do you want to list? (1-8, recommended 6-8). The 4 most important appear on the homepage; all appear in detail on the inner page."
 - Then for each service, ask these fields one at a time:
-  - **Font Awesome icon** [REQUIRED] — e.g., `fa-balance-scale`, `fa-briefcase`. Suggest options based on industry.
+  - **Font Awesome icon** [REQUIRED]: e.g., `fa-balance-scale`, `fa-briefcase`. Suggest options based on industry.
   - **Service name** (primary) [REQUIRED]
   - **Service name** (secondary) [REQUIRED if bilingual]
-  - **Short description** (primary, ~1 sentence) [REQUIRED] — for homepage card
-  - **Detailed paragraph** (primary, ~3-4 sentences) [REQUIRED] — for inner page
-  - **Sub-services** (primary, 4–7 bullets) [REQUIRED] — for inner page list
-  - **Anchor id** [OPTIONAL] — defaults to slugified service name (e.g., "criminal-law")
+  - **Short description** (primary, ~1 sentence) [REQUIRED]: for homepage card
+  - **Detailed paragraph** (primary, ~3-4 sentences) [REQUIRED]: for inner page
+  - **Sub-services** (primary, 4-7 bullets) [REQUIRED]: for inner page list
+  - **Anchor id** [OPTIONAL]: defaults to slugified service name (e.g., "criminal-law")
 
-### Team Members [REQUIRED — at least 1]
+### Team Members [REQUIRED, at least 1]
 
-- First ask: "How many team members? (1–5)"
+- First ask: "How many team members? (1-5)"
 - Then for each member, ask these fields one at a time:
   - **Full name** [REQUIRED]
-  - **Title** (primary) [REQUIRED] — e.g., "Founding Partner"
+  - **Title** (primary) [REQUIRED]: e.g., "Founding Partner"
   - **Title** (secondary) [REQUIRED if bilingual]
-  - **Education** [OPTIONAL] — used in schema.org Person/alumniOf
-  - **Specialties** [REQUIRED] — comma-separated, used in schema.org knowsAbout
+  - **Education** [OPTIONAL]: used in schema.org Person/alumniOf
+  - **Specialties** [REQUIRED]: comma-separated, used in schema.org knowsAbout
   - **Bio** (primary, ~3 sentences) [REQUIRED]
   - **Bio** (secondary) [REQUIRED if bilingual]
-  - **Photo file path** [OPTIONAL] — if omitted, a placeholder initial circle is used
+  - **Photo file path** [OPTIONAL]: if omitted, a placeholder initial circle is used
   - **Instagram URL** [OPTIONAL]
   - **LinkedIn URL** [OPTIONAL]
-  - **Email** [OPTIONAL] — if provided, agent must confirm: "Do you want this email visible on the site? (yes/no)"
+  - **Email** [OPTIONAL]: if provided, agent must confirm: "Do you want this email visible on the site? (yes/no)"
 
 ### Contact [REQUIRED]
 
-- **Phone numbers** [REQUIRED] — list of person + number pairs. Validate phone format (E.164 preferred: +90...).
-- **Working hours** [REQUIRED] — e.g., "Monday – Friday: 09:00 – 18:00"
-- **Social media accounts** [OPTIONAL] — platforms (Instagram, LinkedIn, X, etc.) with URLs. Ask one at a time per platform.
-- **Google Maps embed URL** [REQUIRED] — full iframe `src` URL (instruct user: Google Maps → open location → "Share" → "Embed a map" → copy `src` from iframe code)
+- **Phone numbers** [REQUIRED]: list of person + number pairs. Validate phone format (E.164 preferred: +90...).
+- **Working hours** [REQUIRED]: e.g., "Monday-Friday: 09:00-18:00"
+- **Social media accounts** [OPTIONAL]: platforms (Instagram, LinkedIn, X, etc.) with URLs. Ask one at a time per platform.
+- **Google Maps embed URL** [REQUIRED]: full iframe `src` URL (instruct user: Google Maps → open location → "Share" → "Embed a map" → copy `src` from iframe code)
 
 ### Brand Colors [REQUIRED]
 
-- **Primary** (light mode): hex code — main brand color
-- **Secondary** (light mode): hex code — darker shade of primary (hover states)
-- **Accent** (light mode) [OPTIONAL] — small accents
-- **Primary** (dark mode): hex code — **must have at least 4.5:1 contrast ratio with white text** (WCAG AA). Validate using a contrast formula; if invalid, warn the user and suggest a darker shade. Re-ask.
-- **Secondary** (dark mode): hex code — darker shade of dark primary
+- **Primary** (light mode): hex code, main brand color
+- **Secondary** (light mode): hex code, darker shade of primary (hover states)
+- **Accent** (light mode) [OPTIONAL]: small accents
+- **Primary** (dark mode): hex code. **Must have at least 4.5:1 contrast ratio with white text** (WCAG AA). Validate using a contrast formula; if invalid, warn the user and suggest a darker shade. Re-ask.
+- **Secondary** (dark mode): hex code, darker shade of dark primary
 - If user does not know, suggest defaults based on industry (e.g., navy + gold for law, teal + sage for healthcare).
 
-### FAQ [OPTIONAL — recommended at least 3]
+### FAQ [OPTIONAL, recommended at least 3]
 
 - First ask: "Do you want a FAQ section on the contact page? (yes/no)"
 - If yes, ask: "How many questions?"
@@ -142,17 +142,17 @@ Start the interview with the section "Language Preference" because it determines
 
 ### Form / Spam Protection [REQUIRED]
 
-- **Web3Forms Access Key** [REQUIRED] — obtain from [web3forms.com](https://web3forms.com) (email signup sufficient). Validate format: UUID-like string (8-4-4-4-12 hex characters).
-- **hCaptcha** [OPTIONAL] — ask: "Do you want hCaptcha bot protection on the contact form? (yes/no, default yes)". If yes, use Web3Forms default sitekey (`50b2fe65-b00b-4b9e-ad62-3ba471098be2`) unless user provides their own.
-- **Email address registered with Web3Forms** [REQUIRED for testing] — agent uses this to inform user where form submissions will land. Does not appear on the site.
+- **Web3Forms Access Key** [REQUIRED]: obtain from [web3forms.com](https://web3forms.com) (email signup sufficient). Validate format: UUID-like string (8-4-4-4-12 hex characters).
+- **hCaptcha** [OPTIONAL]. Ask: "Do you want hCaptcha bot protection on the contact form? (yes/no, default yes)". If yes, use Web3Forms default sitekey (`50b2fe65-b00b-4b9e-ad62-3ba471098be2`) unless user provides their own.
+- **Email address registered with Web3Forms** [REQUIRED for testing]: agent uses this to inform user where form submissions will land. Does not appear on the site.
 
 ### Blog [OPTIONAL]
 
 - Ask: "Do you want a blog/articles section? (yes/no, default no)"
 - If yes:
-  - **Ghost URL** [REQUIRED] — e.g., <https://blog.example.com>
+  - **Ghost URL** [REQUIRED]: e.g., <https://blog.example.com>
   - **Content API Key** [REQUIRED]
-  - **Category map** [REQUIRED] — mapping of services to Ghost tag slugs (agent constructs this from the Services list, asks user to confirm)
+  - **Category map** [REQUIRED]: mapping of services to Ghost tag slugs (agent constructs this from the Services list, asks user to confirm)
 - If no: agent removes article pages and Ghost script references from the site.
 
 ### Footer Credit [OPTIONAL]
@@ -166,12 +166,12 @@ Start the interview with the section "Language Preference" because it determines
 
 ### Stack
 
-- **Pure HTML + CSS + Vanilla JS** — no framework, no build step, no npm
-- **Static hosting** compatible — GitHub Pages, Netlify, Vercel, Cloudflare Pages, etc.
-- **Form backend** — Web3Forms (no server, JS fetch only)
-- **Bot protection** — hCaptcha (Web3Forms native support)
-- **Blog backend** — (optional) Ghost CMS Headless API
-- **Theme system** — CSS variables + `data-theme` attribute + FOUC-preventing inline script
+- **Pure HTML + CSS + Vanilla JS**: no framework, no build step, no npm
+- **Static hosting** compatible: GitHub Pages, Netlify, Vercel, Cloudflare Pages, etc.
+- **Form backend**: Web3Forms (no server, JS fetch only)
+- **Bot protection**: hCaptcha (Web3Forms native support)
+- **Blog backend**: (optional) Ghost CMS Headless API
+- **Theme system**: CSS variables + `data-theme` attribute + FOUC-preventing inline script
 
 ### Folder Structure
 
@@ -234,9 +234,9 @@ Use language-specific filenames as appropriate (e.g., `hakkimizda.html` for Turk
 
 ### Step 4: Create JS files
 
-- `js/theme.js` — copy from reference, only `STORAGE_KEY` may change
-- `js/main.js` — copy from reference (mobile menu, smooth scroll, header scroll)
-- `js/contact-form.js` — copy from reference, update `ACCESS_KEY` and `fromName` values
+- `js/theme.js`: copy from reference, only `STORAGE_KEY` may change
+- `js/main.js`: copy from reference (mobile menu, smooth scroll, header scroll)
+- `js/contact-form.js`: copy from reference, update `ACCESS_KEY` and `fromName` values
 
 ### Step 5: HTML base templates
 
@@ -253,10 +253,10 @@ Use language-specific filenames as appropriate (e.g., `hakkimizda.html` for Turk
 
 ### Step 7: Inner pages
 
-- **About** — page-header + long descriptive paragraphs + vision/mission side-by-side + values list (with check-mark icons)
-- **Services** — page-header + intro + 8 service detail cards (icon + h3 + paragraph + h4 "Services" + ul) + CTA section
-- **Team** — page-header + intro + team cards grid
-- **Contact** — page-header + intro + contact info cards (flex-wrap) + form + map iframe + FAQ (accordion)
+- **About**: page-header + long descriptive paragraphs + vision/mission side-by-side + values list (with check-mark icons)
+- **Services**: page-header + intro + 8 service detail cards (icon + h3 + paragraph + h4 "Services" + ul) + CTA section
+- **Team**: page-header + intro + team cards grid
+- **Contact**: page-header + intro + contact info cards (flex-wrap) + form + map iframe + FAQ (accordion)
 
 ### Step 8: Secondary language version (if bilingual)
 
@@ -267,8 +267,8 @@ Use language-specific filenames as appropriate (e.g., `hakkimizda.html` for Turk
 
 ### Step 9: SEO files
 
-- `sitemap.xml` — all page URLs with `<lastmod>` and `<priority>`
-- `robots.txt` — sitemap reference + crawl permissions
+- `sitemap.xml`: all page URLs with `<lastmod>` and `<priority>`
+- `robots.txt`: sitemap reference + crawl permissions
 - Favicon (16×16, 32×32, 180×180 Apple touch icon)
 
 ### Step 10: Test and validate
@@ -285,17 +285,17 @@ The site must be SEO-complete. Every item below must be applied.
 
 - `<meta charset="UTF-8">`
 - `<meta name="viewport" content="width=device-width, initial-scale=1.0">`
-- `<meta name="description" content="...">` — page-specific, max 155 characters
-- `<meta name="keywords" content="...">` — 5-10 page-relevant keywords
+- `<meta name="description" content="...">`: page-specific, max 155 characters
+- `<meta name="keywords" content="...">`: 5-10 page-relevant keywords
 - `<meta name="author" content="...">`
 - `<meta name="robots" content="index, follow">`
-- `<title>` — page-specific, unique, max 60 characters
+- `<title>`: page-specific, unique, max 60 characters
 
 ### Canonical and Multi-Language
 
-- `<link rel="canonical" href="https://domain.com/full-path">` — every page
-- `<link rel="alternate" hreflang="tr" href="...">` — for each language version
-- `<link rel="alternate" hreflang="x-default" href="...">` — default version
+- `<link rel="canonical" href="https://domain.com/full-path">`: every page
+- `<link rel="alternate" hreflang="tr" href="...">`: for each language version
+- `<link rel="alternate" hreflang="x-default" href="...">`: default version
 
 ### Open Graph (Facebook, LinkedIn, etc.)
 
@@ -304,7 +304,7 @@ The site must be SEO-complete. Every item below must be applied.
 - `<meta property="og:site_name" content="...">`
 - `<meta property="og:title" content="...">`
 - `<meta property="og:description" content="...">`
-- `<meta property="og:image" content="...">` — recommended **1200×630px**
+- `<meta property="og:image" content="...">`: recommended **1200×630px**
 - For non-primary language pages, also include: `og:locale="en_US"` + `og:locale:alternate="..."`
 
 ### Twitter Card
@@ -338,12 +338,12 @@ The site must be SEO-complete. Every item below must be applied.
 
 - Every `<img>` must have a descriptive `alt` attribute (e.g., "Office interior of [Firm Name]")
 - Use `loading="lazy"` on images below the fold (NOT on hero image)
-- Include `width` and `height` attributes on `<img>` (prevents CLS — Cumulative Layout Shift, a Core Web Vital)
+- Include `width` and `height` attributes on `<img>` (prevents CLS: Cumulative Layout Shift, a Core Web Vital)
 - Optimize image files (prefer WebP/AVIF; JPEG max 200KB for homepage)
 
 ### Site Files
 
-- **`sitemap.xml`** — all pages listed with `<lastmod>` and `<priority>`
+- **`sitemap.xml`**: all pages listed with `<lastmod>` and `<priority>`
 
   ```xml
   <?xml version="1.0" encoding="UTF-8"?>
@@ -356,7 +356,7 @@ The site must be SEO-complete. Every item below must be applied.
   </urlset>
   ```
 
-- **`robots.txt`** — minimal:
+- **`robots.txt`**, minimal:
 
   ```text
   User-agent: *
@@ -370,7 +370,7 @@ The site must be SEO-complete. Every item below must be applied.
 - `aria-current="page"` on active navigation link
 - `aria-live="polite"` on form status messages
 - Color contrast minimum 4.5:1 (normal text), 3:1 (large text 18px+)
-- Visible focus state — `:focus-visible` ring on all interactive elements
+- Visible focus state: `:focus-visible` ring on all interactive elements
 
 ### Performance (Core Web Vitals)
 
@@ -397,9 +397,9 @@ The site must be SEO-complete. Every item below must be applied.
 
 ## Protected Patterns (Do Not Modify)
 
-These patterns are tested in production. Do not deviate — only adapt content.
+These patterns are tested in production. Do not deviate. Only adapt content.
 
-### 1. Form Pattern (Critical — Windows Defender Phishing Prevention)
+### 1. Form Pattern (Critical: Windows Defender Phishing Prevention)
 
 The HTML form **must not contain**:
 
@@ -509,10 +509,10 @@ In multi-column CSS Grid, if a grid cell contains fixed-width content (e.g., hCa
 
 ### 6. Responsive Breakpoints
 
-- **≥992px**: Desktop — 2-column grids
-- **≤992px**: Tablet — grids become 1-column, mobile menu activates
-- **≤768px**: Mobile — hero shrinks, padding reduces
-- **≤576px**: Small mobile — container 92% width, single column
+- **≥992px**: Desktop (2-column grids)
+- **≤992px**: Tablet (grids become 1-column, mobile menu activates)
+- **≤768px**: Mobile (hero shrinks, padding reduces)
+- **≤576px**: Small mobile (container 92% width, single column)
 
 Avoid adding new breakpoints. Use `flex-wrap` and `auto-fit`/`auto-fill` for organic responsive behavior.
 
