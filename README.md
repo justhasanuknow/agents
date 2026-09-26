@@ -27,7 +27,6 @@ Each instruction file in this repo is designed to be:
 | Instruction | Category | Use Case | Status |
 | --- | --- | --- | --- |
 | [PLAIN-STATIC-SITE-TEMPLATE.md](tech-based-rules/PLAIN-STATIC-SITE-TEMPLATE.md) | Web Development | Build a modern professional-service static website with dark/light mode, SEO, form, and bot protection | Stable |
-| [SVELTEKIT-DIRECTUS-TEMPLATE.md](tech-based-rules/SVELTEKIT-DIRECTUS-TEMPLATE.md) | Web Development | Build a content-managed website with a hand-written SvelteKit frontend and Directus as the headless CMS | Draft |
 | [ANGULAR.md](tech-based-rules/ANGULAR.md) | Web Development | Framework-level conventions for AI agents working in modern Angular codebases (standalone, signals, i18n, theming) | Stable |
 | [GIT-RULES.md](GIT-RULES.md) | Workflow Safety | Define which git and GitHub CLI operations an AI agent may perform, which are user-only, and how conflict resolution and user waivers are scoped | Stable |
 | [GENERAL-RULES.md](GENERAL-RULES.md) | Workflow Safety | Baseline agent rules for every task: conduct, formatting, command/database restrictions, and per-technology conventions | Stable |
@@ -62,14 +61,13 @@ Not every instruction needs every section, but this is the standard skeleton.
 
 ```text
 /
-├── README.md                            # this file (for humans)
-├── AGENTS.md                            # entry point for AI agents (read first)
-├── GENERAL-RULES.md                     # baseline rules for every agent task
-├── GIT-RULES.md                         # workflow: git operation rules for AI agents
-├── tech-based-rules/                    # technology-specific instruction files
-│   ├── ANGULAR.md                       # web: Angular codebase conventions
-│   ├── PLAIN-STATIC-SITE-TEMPLATE.md    # web: professional-service static site
-│   └── SVELTEKIT-DIRECTUS-TEMPLATE.md   # web: SvelteKit frontend + Directus CMS
+├── README.md                           # this file (for humans)
+├── AGENTS.md                           # entry point for AI agents (read first)
+├── GENERAL-RULES.md                    # baseline rules for every agent task
+├── GIT-RULES.md                        # workflow: git operation rules for AI agents
+├── tech-based-rules/                   # technology-specific instruction files
+│   ├── ANGULAR.md                      # web: Angular codebase conventions
+│   └── PLAIN-STATIC-SITE-TEMPLATE.md   # web: professional-service static site
 └── (future instructions)
 ```
 

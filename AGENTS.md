@@ -30,7 +30,6 @@ Do not skip step 2 because the task looks small. The always-read files contain s
 | --- | --- |
 | Working in an Angular codebase (any Angular version, any task: feature, fix, refactor) | [tech-based-rules/ANGULAR.md](tech-based-rules/ANGULAR.md) |
 | Building or modifying a plain static website (HTML/CSS/JS, no framework) | [tech-based-rules/PLAIN-STATIC-SITE-TEMPLATE.md](tech-based-rules/PLAIN-STATIC-SITE-TEMPLATE.md) |
-| Building or modifying a content-managed website with a SvelteKit frontend and Directus as the headless CMS | [tech-based-rules/SVELTEKIT-DIRECTUS-TEMPLATE.md](tech-based-rules/SVELTEKIT-DIRECTUS-TEMPLATE.md) |
 
 If no file matches your task type, proceed with the always-read rules plus your general engineering judgment. Do not force-apply an unrelated instruction file.
 
