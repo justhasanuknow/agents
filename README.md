@@ -30,6 +30,7 @@ Each instruction file in this repo is designed to be:
 | [ANGULAR.md](tech-based-rules/ANGULAR.md) | Web Development | Framework-level conventions for AI agents working in modern Angular codebases (standalone, signals, i18n, theming) | Stable |
 | [GIT-RULES.md](GIT-RULES.md) | Workflow Safety | Define which git and GitHub CLI operations an AI agent may perform, which are user-only, and how conflict resolution and user waivers are scoped | Stable |
 | [GENERAL-RULES.md](GENERAL-RULES.md) | Workflow Safety | Baseline agent rules for every task: conduct, formatting, command/database restrictions, and per-technology conventions | Stable |
+| [DEVELOPMENT-WORKFLOW.md](DEVELOPMENT-WORKFLOW.md) | Workflow | Build a complete new application from a `PROJECT.md` in one autonomous run: analysis, phased plan with test gates, full regression at every phase, private repository, maintainer guide | Draft |
 
 Planned categories: code review, refactor, design brief, content writing, data analysis, devops runbooks.
 
@@ -65,6 +66,7 @@ Not every instruction needs every section, but this is the standard skeleton.
 ├── AGENTS.md                           # entry point for AI agents (read first)
 ├── GENERAL-RULES.md                    # baseline rules for every agent task
 ├── GIT-RULES.md                        # workflow: git operation rules for AI agents
+├── DEVELOPMENT-WORKFLOW.md             # workflow: autonomous one-shot project development
 ├── tech-based-rules/                   # technology-specific instruction files
 │   ├── ANGULAR.md                      # web: Angular codebase conventions
 │   └── PLAIN-STATIC-SITE-TEMPLATE.md   # web: professional-service static site
@@ -77,7 +79,7 @@ Each file is self-contained — no shared imports. You can use any instruction i
 
 1. Pick a recurring task you'd like to standardize.
 2. Identify a public reference (live site, GitHub repo, documentation page) that demonstrates the desired output quality.
-3. Create `your-instruction-name.md` in the matching category folder (e.g. `tech-based-rules/` for technology-specific conventions), or at the repository root for cross-cutting rules, modeled on existing instructions.
+3. Create `your-instruction-name.md` in the matching category folder (e.g. `tech-based-rules/` for technology-specific conventions), or at the repository root for cross-cutting rules and workflows, modeled on existing instructions.
 4. Include the relevant sections from the "Anatomy" list. Skip what doesn't apply.
 5. Test the instruction with a fresh agent at least once, end-to-end.
 6. Add a row to the Catalog table above.

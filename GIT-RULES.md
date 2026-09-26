@@ -148,6 +148,12 @@ Category 2 is the default, not an absolute. The user may lift it for one occasio
 
 A vague instruction is not a waiver. "Sync it", "handle it", "make it work" and "clean this up" leave Category 2 fully in force.
 
+### Autonomous development mode
+
+[DEVELOPMENT-WORKFLOW.md](DEVELOPMENT-WORKFLOW.md) defines a waiver that lasts for one autonomous run and is activated only by an explicit user instruction. Within that run the agent may run `git init`, `git add`, `git commit`, create local branches, run `gh repo create --private` for the project's own new repository, and run non-force `git push` to that repository.
+
+Everything else in Category 2 remains forbidden, including force-push and any history rewrite, changing repository visibility or settings, deleting repositories, branches or tags, and every other `gh` write command. The Commit Message Rules apply in full: no agent attribution of any kind. If this section and DEVELOPMENT-WORKFLOW.md ever differ, the narrower permission applies.
+
 ---
 
 ## Commit Message Rules
@@ -169,7 +175,8 @@ When the agent is about to run any git or `gh` command, it must walk through thi
 2. **Is the command in the forbidden list (Category 2)?** → Do not run it. Tell the user what command they need to run themselves and why.
 3. **Is it conflict resolution explicitly commanded by the user in this conversation (Category 3)?** → Perform only the scoped steps listed there, then stop and report.
 4. **Did the user waive the restriction in this message, naming the operation?** → Run exactly what was named, never a deletion, then report what ran.
-5. **Is the command not covered by this document?** → Treat it as forbidden. Explain the situation to the user and ask how they want to proceed.
+5. **Is an autonomous run active (explicitly started by the user under DEVELOPMENT-WORKFLOW.md) and is the command in its allowed list?** → Run it, then continue the run.
+6. **Is the command not covered by this document?** → Treat it as forbidden. Explain the situation to the user and ask how they want to proceed.
 
 ---
 
@@ -195,4 +202,5 @@ When the agent is about to run any git or `gh` command, it must walk through thi
 | Commit message drafting | writing/suggesting a commit message as text | Yes on request — but never with agent attribution (no AI `Co-Authored-By`, no "Generated with" footers) |
 | GitHub CLI reads | `gh repo view`, `gh pr list`, `gh api` without a method | Yes, always |
 | GitHub CLI writes | `gh release create`, `gh repo edit`, `gh pr merge`, `gh workflow run` | Never — user only, unless waived for that one occasion |
+| Autonomous run | `init`, `add`, `commit`, local branches, private `gh repo create`, non-force `push` to the run's own repository | Only inside an explicitly started autonomous run (DEVELOPMENT-WORKFLOW.md); attribution rules still apply |
 | Deleting anything | files, branches, tags, releases, repositories | Never — user only, waiver or not |

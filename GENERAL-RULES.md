@@ -6,6 +6,7 @@ Technology-specific instruction files (in `tech-based-rules/`) build on top of t
 
 - **Safety restrictions** in this file (file deletion, database access, command restrictions, git) can **never** be overridden by a technology-specific file.
 - **Style conventions** in this file are defaults — if a technology-specific instruction file defines a more specific convention for the same topic, the more specific rule wins.
+- **Autonomous mode** ([DEVELOPMENT-WORKFLOW.md](DEVELOPMENT-WORKFLOW.md)), when the user explicitly starts it, lifts the command, file-deletion, database and git restrictions in this file within the scope that file defines. It is not a technology-specific file, and it is the only document that can do this.
 
 ---
 
@@ -43,6 +44,7 @@ Do these at the beginning of every task, before writing anything:
 - **No `deno` commands.** Same protocol: give the user the exact command to run.
 - **Never delete any file directly.** If a file no longer serves a purpose, explain to the user why that is the case and ask the user to delete it themselves.
 - **Never start long-running processes** — dev servers, watch modes, daemons, or anything that does not terminate on its own.
+- **Exception:** inside an explicitly started autonomous run, [DEVELOPMENT-WORKFLOW.md](DEVELOPMENT-WORKFLOW.md) defines what is allowed.
 
 ---
 
@@ -53,6 +55,7 @@ Full rules live in [GIT-RULES.md](GIT-RULES.md) — read that file for the compl
 - **Never perform git actions** (including `git add`, `git commit`, `git push`). Read-only inspection commands (`git status`, `git log`, `git diff`, etc.) are allowed.
 - **The same applies to the GitHub CLI.** `gh` commands that read (`gh repo view`, `gh pr list`, `gh api` without a method) are allowed; anything that writes to a remote — releases, pull requests, issues, repository settings, secrets, workflow runs — is user-only.
 - If the user requests a git or `gh` action, **inform them of this rule and give them the exact command to run themselves**.
+- **Exception:** inside an explicitly started autonomous run, [DEVELOPMENT-WORKFLOW.md](DEVELOPMENT-WORKFLOW.md) defines what is allowed.
 
 ---
 
@@ -60,6 +63,7 @@ Full rules live in [GIT-RULES.md](GIT-RULES.md) — read that file for the compl
 
 - **Never directly perform any database operation** — no queries, migrations, schema changes, or data modifications against any database.
 - If a database operation is needed, **provide the user with everything required to run it themselves**: the exact SQL commands, the order to run them in, and any warnings about destructive effects.
+- **Exception:** inside an explicitly started autonomous run, [DEVELOPMENT-WORKFLOW.md](DEVELOPMENT-WORKFLOW.md) defines what is allowed.
 
 ---
 

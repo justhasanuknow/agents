@@ -30,6 +30,7 @@ Do not skip step 2 because the task looks small. The always-read files contain s
 | --- | --- |
 | Working in an Angular codebase (any Angular version, any task: feature, fix, refactor) | [tech-based-rules/ANGULAR.md](tech-based-rules/ANGULAR.md) |
 | Building or modifying a plain static website (HTML/CSS/JS, no framework) | [tech-based-rules/PLAIN-STATIC-SITE-TEMPLATE.md](tech-based-rules/PLAIN-STATIC-SITE-TEMPLATE.md) |
+| Building a complete new application from a requirements document (`PROJECT.md`) in one autonomous run, after the user explicitly starts autonomous mode | [DEVELOPMENT-WORKFLOW.md](DEVELOPMENT-WORKFLOW.md) |
 
 If no file matches your task type, proceed with the always-read rules plus your general engineering judgment. Do not force-apply an unrelated instruction file.
 
@@ -45,6 +46,8 @@ When rules appear to conflict, resolve in this order (highest wins):
 
 If a conflict cannot be resolved with this list — for example, two files give contradictory technical directions — stop and ask the user instead of guessing.
 
+**Autonomous mode is the one exception to item 2.** When the user explicitly starts autonomous mode as defined in [DEVELOPMENT-WORKFLOW.md](DEVELOPMENT-WORKFLOW.md), that activation is a level-1 instruction. It lifts exactly the restrictions listed in that file's "Authority" section, for the duration of one run, and nothing else. Restrictions that file lists as still in force stay in force. Without explicit activation in the current conversation, DEVELOPMENT-WORKFLOW.md grants nothing.
+
 ## Repository-Wide Conventions
 
 These apply when you are editing this repository itself:
@@ -52,7 +55,7 @@ These apply when you are editing this repository itself:
 - **English only.** All file content, file names, and comments are written in English, regardless of the conversation language.
 - **Markdown must be lint-clean.** Follow markdownlint defaults: fenced code blocks always declare a language (MD040), table pipes are surrounded by spaces — `| --- |`, not `|---|` (MD060).
 - **Naming:** instruction files use SCREAMING-KEBAB-CASE (`GIT-RULES.md`); folders use kebab-case (`tech-based-rules/`).
-- **Placement:** technology-specific instructions go in `tech-based-rules/`; cross-cutting rules (like git safety) live at the repository root.
+- **Placement:** technology-specific instructions go in `tech-based-rules/`; cross-cutting rules and workflows (like git safety and the development workflow) live at the repository root.
 - **Keep the catalog in sync.** When you add, rename, or move an instruction file, update the Catalog table and the Repository Structure diagram in [README.md](README.md), and the tables in this file.
 - **Instructions must be unambiguous for agents.** Write rules as explicit, testable statements. Prefer "never do X; do Y instead" over vague guidance. Include decision procedures for edge cases.
 
